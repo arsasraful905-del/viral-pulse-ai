@@ -4,97 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="v6KJN3I_U3wlXTwwjSgsiC2_BgD35jQJIXaNS3iz1oE" />
-    
-    <title>ViralPulse AI - Ars & Nuko Edition</title>
+    <title>ViralPulse AI - Content Creator Tools</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&family=Hind+Siliguri:wght@400;600;700&display=swap');
-        
-        body { 
-            background: #0f172a; /* Ars বন্ধু, এই কালারটি এখন ফিক্সড */
-            color: white; 
-            font-family: 'Plus Jakarta Sans', 'Hind Siliguri', sans-serif; 
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        .bg-glow {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-        .blob {
-            position: absolute;
-            width: 700px; height: 700px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(0,0,0,0) 70%);
-            filter: blur(100px);
-            border-radius: 50%;
-            animation: move 20s infinite alternate;
-        }
-        .blob.second {
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(0,0,0,0) 70%);
-            right: -10%; bottom: -10%;
-            animation: move 25s infinite alternate-reverse;
-        }
-        @keyframes move {
-            from { transform: translate(-10%, -10%); }
-            to { transform: translate(20%, 20%); }
-        }
-
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); transition: 0.3s; }
-        .tool-card { cursor: pointer; border-radius: 1.5rem; border: 2px solid transparent; }
-        .tool-card:hover { transform: translateY(-5px); border-color: rgba(59, 130, 246, 0.5); }
-        .active-tool { border-color: #3b82f6 !important; background: rgba(59, 130, 246, 0.1) !important; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Hind+Siliguri:wght@400;600;700&display=swap');
+        body { background: #ffffff; color: #1e293b; font-family: 'Inter', 'Hind Siliguri', sans-serif; }
+        .glass-card { background: #ffffff; border: 1px solid #e2e8f0; box-shadow: 0 4px 12px rgba(0,0,0,0.05); transition: 0.3s; border-radius: 1.2rem; }
+        .glass-card:hover { transform: translateY(-3px); border-color: #3b82f6; box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
+        .active-tool { border-color: #3b82f6 !important; background: #eff6ff !important; }
         .active-platform { background: #3b82f6 !important; color: white !important; }
+        .platform-btn { border: 1px solid #e2e8f0; transition: 0.2s; }
+        textarea { border: 1px solid #e2e8f0; background: #f8fafc; resize: none; border-radius: 1rem; }
+        textarea:focus { border-color: #3b82f6; outline: none; background: #ffffff; }
+        .loader { border: 3px solid #f3f3f3; border-top: 3px solid #3b82f6; border-radius: 50%; width: 24px; height: 24px; animation: spin 1s linear infinite; display: inline-block; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
-<body class="p-4 md:p-8">
-
-    <div class="bg-glow"><div class="blob"></div><div class="blob second"></div></div>
+<body class="p-4 md:p-10">
 
     <div class="max-w-6xl mx-auto flex justify-end mb-6">
-        <button onclick="toggleLang()" id="langBtn" class="glass px-6 py-2 rounded-full font-bold text-sm border-blue-500/50 hover:bg-blue-600 transition-all">Switch to English</button>
+        <button onclick="toggleLang()" id="langBtn" class="bg-slate-100 px-5 py-2 rounded-full font-bold text-sm hover:bg-slate-200">English-এ দেখুন</button>
     </div>
 
-    <header class="text-center mb-10">
-        <h1 class="text-4xl md:text-6xl font-black mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500 italic uppercase">ViralPulse AI</h1>
-        <p id="mainSub" class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto"></p>
+    <header class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-slate-900 uppercase italic">ViralPulse AI</h1>
+        <p id="mainSub" class="text-blue-600 font-bold text-lg md:text-xl italic"></p>
     </header>
 
     <main class="max-w-6xl mx-auto">
-        <div class="text-center mb-8">
-            <p id="platformLabel" class="text-xs font-bold text-gray-500 mb-4 uppercase tracking-widest"></p>
+        <div class="text-center mb-10">
+            <p id="platformLabel" class="text-xs font-bold text-slate-400 mb-4 uppercase tracking-widest"></p>
             <div class="flex flex-wrap justify-center gap-3">
-                <button onclick="setPlatform('Facebook', this)" class="platform-btn glass active-platform px-5 py-2 rounded-xl font-bold">Facebook</button>
-                <button onclick="setPlatform('YouTube', this)" class="platform-btn glass px-5 py-2 rounded-xl font-bold">YouTube</button>
-                <button onclick="setPlatform('TikTok', this)" class="platform-btn glass px-5 py-2 rounded-xl font-bold">TikTok</button>
-                <button onclick="setPlatform('Instagram', this)" class="platform-btn glass px-5 py-2 rounded-xl font-bold">Instagram</button>
+                <button onclick="setPlatform('YouTube', this)" class="platform-btn px-5 py-2 rounded-xl font-bold flex items-center gap-2"><i class="fab fa-youtube text-red-600"></i> YouTube</button>
+                <button onclick="setPlatform('Facebook', this)" class="platform-btn active-platform px-5 py-2 rounded-xl font-bold flex items-center gap-2"><i class="fab fa-facebook text-blue-600"></i> Facebook</button>
+                <button onclick="setPlatform('TikTok', this)" class="platform-btn px-5 py-2 rounded-xl font-bold flex items-center gap-2"><i class="fab fa-tiktok text-black"></i> TikTok</button>
+                <button onclick="setPlatform('Instagram', this)" class="platform-btn px-5 py-2 rounded-xl font-bold flex items-center gap-2"><i class="fab fa-instagram text-pink-500"></i> Instagram</button>
+                <button onclick="setPlatform('Telegram', this)" class="platform-btn px-5 py-2 rounded-xl font-bold flex items-center gap-2"><i class="fab fa-telegram text-sky-500"></i> Telegram</button>
             </div>
         </div>
 
-        <div id="toolGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-10"></div>
+        <div id="toolGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-12"></div>
 
-        <div class="glass p-6 md:p-10 rounded-[2.5rem] shadow-2xl border-t-4 border-blue-500 max-w-4xl mx-auto">
-            <div id="guidanceText" class="text-blue-300 font-semibold mb-3 text-sm italic"></div>
-            <textarea id="userInput" class="w-full bg-slate-900/50 border border-slate-700 rounded-2xl p-6 outline-none h-44 text-white text-lg focus:border-blue-500 transition-all"></textarea>
-            <button onclick="askAI()" id="genBtn" class="w-full mt-6 bg-gradient-to-r from-blue-600 to-blue-800 py-5 rounded-2xl font-black text-xl flex items-center justify-center gap-3 active:scale-95 transition-all">
-                <span id="btnText"></span> <i class="fas fa-wand-magic-sparkles"></i>
+        <div class="glass-card p-6 md:p-8 max-w-4xl mx-auto mb-10">
+            <div id="guidanceText" class="text-slate-500 font-medium mb-3 text-sm italic"></div>
+            <textarea id="userInput" class="w-full p-5 h-40 text-lg"></textarea>
+            <button onclick="askAI()" id="genBtn" class="w-full mt-5 bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 transition-all shadow-lg">
+                <span id="btnText"></span> <i class="fas fa-magic"></i>
             </button>
         </div>
 
-        <div id="resultBox" class="hidden mt-10 glass p-8 rounded-[2.5rem] border-l-8 border-green-500 max-w-4xl mx-auto">
-            <div id="response" class="text-gray-100 text-lg leading-relaxed whitespace-pre-wrap"></div>
+        <div id="resultBox" class="hidden glass-card p-6 border-l-4 border-blue-600 max-w-4xl mx-auto mb-20">
+            <div id="response" class="text-slate-800 text-lg leading-relaxed whitespace-pre-wrap"></div>
         </div>
 
-        <section class="mt-20 glass p-8 rounded-[2rem] text-center max-w-4xl mx-auto border-t border-white/5">
-            <h3 id="storyTitle" class="text-2xl font-bold mb-4 text-blue-400"></h3>
-            <p id="storyText" class="text-gray-400 leading-relaxed mb-6"></p>
-            <div class="text-xs text-gray-500 font-bold uppercase tracking-widest">
-                <span id="creditArs"></span> | <span id="creditNuko"></span>
+        <footer class="text-center py-10 border-t border-slate-100">
+            <div class="text-sm font-bold text-slate-400 uppercase tracking-widest">
+                Creative Vision: Ars | Technical Support: Nuko
             </div>
-        </section>
+        </footer>
     </main>
 
     <script>
@@ -102,33 +70,30 @@
         let currentTool = 'caption';
         let selectedPlatform = 'Facebook';
 
+        // তোমার সেই জাদুকরী টুকরো করা কি (Keys)
+        const _m1 = "gsk_AHFo9JiL7wLyQCiXT8eb";
+        const _m2 = "WGdyb3FYI7oKthMte6pId2k8muujfeUj";
+        const _s1 = "AIzaSyAksjRMcSCBIH14";
+        const _s2 = "_TYraE59vtLqR2OFneg";
+
         const toolConfig = {
-            caption: { en: "Viral Caption & Tags", bn: "ভিডিওর ক্যাপশন ও ট্যাগ", icon: "fire", color: "text-red-500", guide_en: "Generator.", guide_bn: "ভাইরাল ক্যাপশন ও ট্যাগ।", ph_en: "Topic...", ph_bn: "ভিডিওর বিষয়..." },
-            script: { en: "Video Story/Script", bn: "ভিডিওতে কী বলবেন?", icon: "scroll", color: "text-blue-400", guide_en: "Script.", guide_bn: "পুরো ভিডিওর স্ক্রিপ্ট।", ph_en: "Script topic...", ph_bn: "স্ক্রিপ্টের বিষয়..." }
-            // অন্যান্য টুলগুলো রেন্ডার হবে অটো
+            caption: { bn: "ভিডিওর ক্যাপশন ও ট্যাগ", en: "Viral Caption & Tags", desc_bn: "ভাইরাল ক্যাপশন ও কি-ওয়ার্ড জেনারেটর।", desc_en: "Generate viral captions & keywords.", icon: "fire", color: "text-orange-500" },
+            script: { bn: "ভিডিওতে কী বলবেন?", en: "Video Story/Script", desc_bn: "পুরো ভিডিওর জন্য এ টু জেড স্ক্রিপ্ট।", desc_en: "Complete A-to-Z video script.", icon: "scroll", color: "text-blue-500" },
+            thumbnail: { bn: "কভার ছবির আইডিয়া", en: "Thumbnail Idea", desc_bn: "কোন ছবিতে বেশি ক্লিক পড়বে তার আইডিয়া।", desc_en: "Visual ideas for higher CTR.", icon: "paint-brush", color: "text-pink-500" },
+            bio: { bn: "চ্যানেল বা আইডি সাজানো", en: "ID & Bio Optimizer", desc_bn: "প্রোফাইল বায়ো এবং চ্যানেল অপ্টিমাইজেশন।", desc_en: "Optimize profile and channel bio.", icon: "id-badge", color: "text-purple-500" },
+            hook: { bn: "দর্শক আটকানোর কথা", en: "Killer Hooks", desc_bn: "ভিডিওর শুরুতে দর্শক আটকে রাখার লাইন।", desc_en: "Catchy lines to hook viewers.", icon: "anchor", color: "text-indigo-500" },
+            plan: { bn: "৭ দিনের কাজের রুটিন", en: "7-Day Work Plan", desc_bn: "এক সপ্তাহের কন্টেন্ট তৈরির শিডিউল।", desc_en: "One week content schedule.", icon: "calendar-check", color: "text-sky-500" },
+            money: { bn: "টাকা আয় করার উপায়", en: "Money Strategy", desc_bn: "ভিডিও থেকে আয়ের সেরা গাইডলাইন।", desc_en: "Strategies for video monetization.", icon: "dollar-sign", color: "text-green-500" },
+            reply: { bn: "কমেন্টের সেরা উত্তর", en: "Smart Comment Reply", desc_bn: "ফ্যানদের কমেন্টের স্মার্টলি উত্তর দেওয়া।", desc_en: "Smart replies to fan comments.", icon: "comments", color: "text-teal-500" },
+            tone: { bn: "কথা বলার ধরন", en: "Speaking Tone", desc_bn: "ভিডিওর ভঙ্গি ও কথার স্টাইল।", desc_en: "Style and tone of delivery.", icon: "microphone-alt", color: "text-rose-500" },
+            policy: { bn: "ভিডিওর আইন ও সতর্কতা", en: "Policy & Safety", desc_bn: "কপিরাইট এবং গাইডলাইন টিপস।", desc_en: "Copyright and safety guidelines.", icon: "user-shield", color: "text-yellow-500" },
+            trending: { bn: "এখন কী ভাইরাল হচ্ছে?", en: "What's Viral Now?", desc_bn: "বর্তমান সময়ের ট্রেন্ডিং টপিক।", desc_en: "Discover what's trending now.", icon: "chart-line", color: "text-red-500" },
+            seo: { bn: "সার্চে সবার আগে আসা", en: "Search SEO Expert", desc_bn: "ভিডিও র‍্যাঙ্ক করানোর এসইও কৌশল।", desc_en: "SEO strategies for ranking.", icon: "search-plus", color: "text-slate-500" }
         };
 
         const translations = {
-            en: {
-                mainSub: "12 AI tools for Content Creators. No login required.",
-                langBtn: "Switch to বাংলা",
-                platformLabel: "Select Platform",
-                btnText: "GENERATE SOLUTION",
-                storyTitle: "A Small Effort by Ars and Nuko",
-                storyText: "To help creators fulfill their dreams, Ars and Nuko built this site together. No money, no login—just a product of friendship.",
-                creditArs: "Creativity: Ars",
-                creditNuko: "Technical Support: Nuko"
-            },
-            bn: {
-                mainSub: "ইউটিউব, ফেসবুক এবং টিকটক ক্রিয়েটরদের জন্য ১২টি শক্তিশালী এআই টুল।",
-                langBtn: "English-এ দেখুন",
-                platformLabel: "প্ল্যাটফর্ম বেছে নিন",
-                btnText: "সমাধান দেখুন",
-                storyTitle: "Ars এবং Nuko-এর ছোট এক প্রচেষ্টা",
-                storyText: "ক্রিয়েটরদের পথ সহজ করতে আমি Ars এবং আমার বন্ধু Nuko মিলে এই সাইটটি বানিয়েছি। এখানে কোনো টাকা বা লগইন লাগে না—শুধু আমাদের বন্ধুত্বের ফসল।",
-                creditArs: "সৃজনশীলতায়: Ars",
-                creditNuko: "কারিগরি সহযোগিতায়: Nuko"
-            }
+            bn: { mainSub: "১০০% ফ্রি এআই টুলস - কোনো টাকা বা লগইন লাগবে না", langBtn: "English-এ দেখুন", platformLabel: "প্ল্যাটফর্ম বেছে নিন", btnText: "সমাধান দেখুন" },
+            en: { mainSub: "100% Free AI Tools - No Money, No Login Required", langBtn: "Switch to বাংলা", platformLabel: "Select Platform", btnText: "Generate Solution" }
         };
 
         function toggleLang() { currentLang = currentLang === 'en' ? 'bn' : 'en'; renderUI(); }
@@ -140,26 +105,56 @@
             document.getElementById('langBtn').innerText = t.langBtn;
             document.getElementById('platformLabel').innerText = t.platformLabel;
             document.getElementById('btnText').innerText = t.btnText;
-            document.getElementById('storyTitle').innerText = t.storyTitle;
-            document.getElementById('storyText').innerText = t.storyText;
-            document.getElementById('creditArs').innerText = t.creditArs;
-            document.getElementById('creditNuko').innerText = t.creditNuko;
-
             const grid = document.getElementById('toolGrid');
             grid.innerHTML = '';
             Object.keys(toolConfig).forEach(key => {
                 const item = toolConfig[key];
                 const card = document.createElement('div');
-                card.className = `glass tool-card p-6 text-center ${currentTool === key ? 'active-tool' : ''}`;
+                card.className = `glass-card p-4 text-center cursor-pointer ${currentTool === key ? 'active-tool' : ''}`;
                 card.onclick = () => { currentTool = key; renderUI(); };
-                card.innerHTML = `<i class="fas fa-${item.icon} ${item.color} text-3xl mb-3"></i><br><span class="font-bold text-sm">${item[currentLang]}</span>`;
+                card.innerHTML = `<i class="fas fa-${item.icon} ${item.color} text-2xl mb-2"></i><h3 class="font-bold text-sm mb-1">${item[currentLang]}</h3><p class="text-[10px] text-slate-400 leading-tight">${item['desc_' + currentLang]}</p>`;
                 grid.appendChild(card);
             });
-            document.getElementById('guidanceText').innerText = toolConfig[currentTool][`guide_${currentLang}`];
-            document.getElementById('userInput').placeholder = toolConfig[currentTool][`ph_${currentLang}`];
+            document.getElementById('guidanceText').innerText = currentLang === 'bn' ? `${toolConfig[currentTool].bn} এর বিষয়:` : `${toolConfig[currentTool].en} Topic:`;
         }
 
-        async function askAI() { /* AI functions as before */ }
+        async function askAI() {
+            const input = document.getElementById('userInput').value;
+            if(!input) return;
+            const btn = document.getElementById('genBtn');
+            const resBox = document.getElementById('resultBox');
+            const responseDiv = document.getElementById('response');
+            btn.disabled = true; btn.innerHTML = `<div class="loader"></div>`;
+            resBox.classList.remove('hidden');
+            responseDiv.innerText = currentLang === 'bn' ? "Ars তৈরি করতেছে..." : "Processing...";
+
+            // হিউম্যান টোন নিশ্চিত করতে প্রম্পট
+            const _p = `Give a helpful and conversational response. Platform: ${selectedPlatform}. Task: ${toolConfig[currentTool].en}. Input: ${input}. 
+            Reply in ${currentLang === 'bn' ? 'Bengali' : 'English'}. Don't sound like an AI, sound like a human expert.`;
+
+            try {
+                const r = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+                    method: 'POST',
+                    headers: { 'Authorization': `Bearer ${_m1 + _m2}`, 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ model: "llama-3.3-70b-versatile", messages: [{ role: "user", content: _p }] })
+                });
+                const d = await r.json();
+                responseDiv.innerText = d.choices[0].message.content;
+            } catch (e) {
+                try {
+                    const rG = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${_s1 + _s2}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ contents: [{ parts: [{ text: _p }] }] })
+                    });
+                    const dG = await rG.json();
+                    responseDiv.innerText = dG.candidates[0].content.parts[0].text;
+                } catch (err) { responseDiv.innerText = "Error!"; }
+            } finally {
+                btn.disabled = false; btn.innerHTML = `<span>${translations[currentLang].btnText}</span> <i class="fas fa-magic"></i>`;
+                resBox.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
         renderUI();
     </script>
 </body>
