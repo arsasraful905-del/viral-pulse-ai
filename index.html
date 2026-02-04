@@ -3,12 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ViralPulse AI - কন্টেন্ট ক্রিয়েটরদের জন্য কমপ্লিট এআই</title>
+    <title>ViralPulse AI - Ars & Nuko Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&family=Hind+Siliguri:wght@400;600;700&display=swap');
-        body { background: #050a15; color: white; font-family: 'Plus Jakarta Sans', 'Hind Siliguri', sans-serif; overflow-x: hidden; }
+        
+        body { 
+            background: #050a15; 
+            color: white; 
+            font-family: 'Plus Jakarta Sans', 'Hind Siliguri', sans-serif; 
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ব্যাকগ্রাউন্ড নড়াচড়া করার এনিমেশন */
+        .bg-glow {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .blob {
+            position: absolute;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, rgba(0,0,0,0) 70%);
+            filter: blur(80px);
+            border-radius: 50%;
+            animation: move 20s infinite alternate;
+        }
+        .blob.second {
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(0,0,0,0) 70%);
+            right: -10%; bottom: -10%;
+            animation: move 25s infinite alternate-reverse;
+        }
+        @keyframes move {
+            from { transform: translate(-15%, -15%); }
+            to { transform: translate(25%, 25%); }
+        }
+
         .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); transition: 0.3s; }
         .tool-card { cursor: pointer; border-radius: 1.5rem; border: 2px solid transparent; }
         .tool-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.4); border-color: rgba(59, 130, 246, 0.5); }
@@ -20,19 +53,18 @@
 </head>
 <body class="p-4 md:p-8">
 
+    <div class="bg-glow">
+        <div class="blob"></div>
+        <div class="blob second"></div>
+    </div>
+
     <div class="max-w-6xl mx-auto flex justify-end mb-6">
         <button onclick="toggleLang()" id="langBtn" class="glass px-6 py-2 rounded-full font-bold text-sm border-blue-500/50 hover:bg-blue-600 transition-all">Switch to বাংলা</button>
     </div>
 
     <header class="text-center mb-10">
         <h1 id="mainTitle" class="text-4xl md:text-6xl font-black mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500">ViralPulse AI</h1>
-        <p id="mainSub" class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto">ইউটিউব, ফেসবুক এবং টিকটক ক্রিয়েটরদের জন্য ডিজাইন করা ১২টি শক্তিশালী এআই টুল। কোনো লগইন বা ইমেইল লাগবে না, আপনার তথ্য সম্পূর্ণ নিরাপদ।</p>
-        
-        <div class="mt-6 flex flex-wrap justify-center gap-4 text-xs font-bold uppercase tracking-widest text-blue-400">
-            <span class="glass px-4 py-1 rounded-full border-blue-500/20">🔥 ১০০% ফ্রি</span>
-            <span class="glass px-4 py-1 rounded-full border-blue-500/20">🔒 কোনো লগইন নেই</span>
-            <span class="glass px-4 py-1 rounded-full border-blue-500/20">⚡ সুপার ফাস্ট এআই</span>
-        </div>
+        <p id="mainSub" class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto">ইউটিউব, ফেসবুক এবং টিকটক ক্রিয়েটরদের জন্য ডিজাইন করা ১২টি শক্তিশালী এআই টুল। কোনো লগইন বা ইমেইল লাগবে না।</p>
     </header>
 
     <main class="max-w-6xl mx-auto">
@@ -60,12 +92,26 @@
 
         <div id="resultBox" class="hidden mt-10 glass p-8 rounded-[2.5rem] border-l-8 border-green-500 max-w-4xl mx-auto">
             <div class="flex justify-between items-center mb-6">
-                <span class="text-xs font-black text-green-400 uppercase tracking-tighter">এআই উত্তর তৈরি</span>
-                <button onclick="copyText()" class="bg-slate-800 hover:bg-slate-700 px-5 py-2 rounded-xl text-xs font-bold transition-all"><i class="fas fa-copy mr-2"></i> কপি করুন</button>
+                <span class="text-xs font-black text-green-400 uppercase tracking-tighter">AI READY</span>
+                <button onclick="copyText()" class="bg-slate-800 hover:bg-slate-700 px-5 py-2 rounded-xl text-xs font-bold transition-all"><i class="fas fa-copy mr-2"></i> কপি</button>
             </div>
             <div id="response" class="text-gray-100 text-lg leading-relaxed whitespace-pre-wrap"></div>
         </div>
+
+        <section class="mt-20 glass p-8 rounded-[2rem] text-center max-w-4xl mx-auto border-t border-white/5">
+            <h3 class="text-2xl font-bold mb-4 text-blue-400">Ars এবং Nuko-এর ছোট এক প্রচেষ্টা</h3>
+            <p class="text-gray-400 leading-relaxed mb-6">
+                ইউটিউব, ফেসবুক বা টিকটকে যারা নিজের স্বপ্ন সত্যি করতে চায়, তাদের পথটা সহজ করতে আমি <b>Ars</b> এবং আমার বন্ধু <b>Nuko</b> মিলে এই সাইটটি বানিয়েছি। আমাদের লক্ষ্য হলো কন্টেন্ট ক্রিয়েটরদের টেকনিক্যাল সব ঝুটঝামেলা—যেমন স্ক্রিপ্ট লেখা বা এসইও করা—যেন এক নিমিষেই সমাধান হয়ে যায়। এখানে কোনো টাকা লাগে না, কোনো লগইন লাগে না—শুধু আমাদের ভালোবাসা আর বন্ধুত্বের ফসল এই টুলগুলো।
+            </p>
+            <div class="text-xs text-gray-500 font-bold uppercase tracking-widest">
+                সৃজনশীলতায়: <span class="text-blue-500">Ars</span> | কারিগরি সহযোগিতায়: <span class="text-indigo-500">Nuko</span>
+            </div>
+        </section>
     </main>
+
+    <footer class="mt-10 mb-10 text-center text-gray-600 text-sm">
+        &copy; 2026 ViralPulse AI. All rights reserved.
+    </footer>
 
     <script>
         let currentLang = 'bn';
@@ -73,23 +119,23 @@
         let selectedPlatform = 'Facebook';
 
         const toolConfig = {
-            caption: { en: "Viral Caption & Tags", bn: "ভিডিওর ক্যাপশন ও ট্যাগ", icon: "fire", color: "text-red-500", guide_en: "Caption and tags generator.", guide_bn: "ভিডিওর জন্য ভাইরাল ক্যাপশন ও ট্যাগ জেনারেটর।", ph_en: "Topic...", ph_bn: "ভিডিওর বিষয় লিখুন..." },
-            script: { en: "Video Story/Script", bn: "ভিডিওতে কী বলবেন?", icon: "scroll", color: "text-blue-400", guide_en: "Full video script.", guide_bn: "ভিডিওর শুরু থেকে শেষ পর্যন্ত পুরো স্ক্রিপ্ট।", ph_en: "Script topic...", ph_bn: "স্ক্রিপ্টের বিষয় লিখুন..." },
-            thumbnail: { en: "Thumbnail Idea", bn: "কভার ছবির আইডিয়া", icon: "paint-brush", color: "text-pink-400", guide_en: "Design and text ideas.", guide_bn: "থাম্বনেইল ডিজাইন ও টেক্সট আইডিয়া।", ph_en: "Description...", ph_bn: "ভিডিওর বর্ণনা দিন..." },
-            bio: { en: "ID & Bio Optimizer", bn: "চ্যানেল বা আইডি সাজানো", icon: "id-badge", color: "text-purple-400", guide_en: "Profile tips.", guide_bn: "আপনার আইডি বা চ্যানেলের বায়ো টিপস।", ph_en: "About you...", ph_bn: "আপনার পরিচয়..." },
-            hook: { en: "Killer Hooks", bn: "দর্শক আটকানোর কথা", icon: "anchor", color: "text-orange-400", guide_en: "Opening lines.", guide_bn: "ভিডিওর শুরুতে দর্শক আটকানোর উপায়।", ph_en: "Main topic...", ph_bn: "ভিডিওর মূল বিষয়..." },
-            plan: { en: "7-Day Work Plan", bn: "৭ দিনের কাজের রুটিন", icon: "calendar-check", color: "text-sky-400", guide_en: "7-day schedule.", guide_bn: "আগামী ৭ দিনের কন্টেন্ট ক্যালেন্ডার।", ph_en: "Your niche...", ph_bn: "আপনার ক্যাটাগরি..." },
-            money: { en: "Money Strategy", bn: "টাকা আয় করার উপায়", icon: "dollar-sign", color: "text-green-400", guide_en: "Earning guide.", guide_bn: "ভিডিও থেকে টাকা আয়ের সঠিক গাইড।", ph_en: "Topic...", ph_bn: "বিষয়..." },
-            reply: { en: "Smart Comment Reply", bn: "কমেন্টের সেরা উত্তর", icon: "comments", color: "text-teal-400", guide_en: "Comment replies.", guide_bn: "দর্শকদের কমেন্টের সুন্দর উত্তর।", ph_en: "Paste comment...", ph_bn: "কমেন্টটি দিন..." },
-            tone: { en: "Speaking Tone", bn: "কথা বলার ধরন", icon: "microphone-alt", color: "text-indigo-400", guide_en: "Delivery style.", guide_bn: "ভিডিওতে বাচনভঙ্গি কেমন হবে।", ph_en: "Tone type...", ph_bn: "কথার ধরন কেমন?..." },
-            policy: { en: "Policy & Safety", bn: "ভিডিওর আইন ও সতর্কতা", icon: "shield-exclamation", color: "text-yellow-500", guide_en: "Safety tips.", guide_bn: "কপিরাইট এবং কমিউনিটি গাইডলাইন।", ph_en: "Content info...", ph_bn: "কনটেন্ট তথ্য..." },
-            trending: { en: "What's Viral Now?", bn: "এখন কী ভাইরাল হচ্ছে?", icon: "chart-line", color: "text-rose-500", guide_en: "Trending ideas.", guide_bn: "বর্তমান ট্রেন্ডিং ভাইরাল টপিক।", ph_en: "Niche...", ph_bn: "ক্যাটাগরি..." },
-            seo: { en: "Search SEO Expert", bn: "সার্চে সবার আগে আসা", icon: "search-plus", color: "text-slate-400", guide_en: "SEO strategies.", guide_bn: "ভিডিও এসইও করার সিক্রেট টিপস।", ph_en: "Keywords...", ph_bn: "কী-ওয়ার্ড দিন..." }
+            caption: { en: "Viral Caption & Tags", bn: "ভিডিওর ক্যাপশন ও ট্যাগ", icon: "fire", color: "text-red-500", guide_en: "Caption and tags generator.", guide_bn: "ক্যাপশন ও ট্যাগ জেনারেটর।", ph_en: "Topic...", ph_bn: "বিষয়..." },
+            script: { en: "Video Story/Script", bn: "ভিডিওতে কী বলবেন?", icon: "scroll", color: "text-blue-400", guide_en: "Full video script.", guide_bn: "পুরো ভিডিও স্ক্রিপ্ট।", ph_en: "Script topic...", ph_bn: "স্ক্রিপ্টের বিষয়..." },
+            thumbnail: { en: "Thumbnail Idea", bn: "কভার ছবির আইডিয়া", icon: "paint-brush", color: "text-pink-400", guide_en: "Design and text ideas.", guide_bn: "থাম্বনেইল আইডিয়া।", ph_en: "Description...", ph_bn: "বর্ণনা..." },
+            bio: { en: "ID & Bio Optimizer", bn: "চ্যানেল বা আইডি সাজানো", icon: "id-badge", color: "text-purple-400", guide_en: "Profile tips.", guide_bn: "বায়ো ও প্রোফাইল টিপস।", ph_en: "About you...", ph_bn: "আপনার পরিচয়..." },
+            hook: { en: "Killer Hooks", bn: "দর্শক আটকানোর কথা", icon: "anchor", color: "text-orange-400", guide_en: "Opening lines.", guide_bn: "শুরুর জাদুকরী লাইন।", ph_en: "Main topic...", ph_bn: "মূল বিষয়..." },
+            plan: { en: "7-Day Work Plan", bn: "৭ দিনের কাজের রুটিন", icon: "calendar-check", color: "text-sky-400", guide_en: "7-day schedule.", guide_bn: "৭ দিনের ভিডিও রুটিন।", ph_en: "Your niche...", ph_bn: "আপনার ক্যাটাগরি..." },
+            money: { en: "Money Strategy", bn: "টাকা আয় করার উপায়", icon: "dollar-sign", color: "text-green-400", guide_en: "Earning guide.", guide_bn: "আয়ের গাইডলাইন।", ph_en: "Topic...", ph_bn: "বিষয়..." },
+            reply: { en: "Smart Comment Reply", bn: "কমেন্টের সেরা উত্তর", icon: "comments", color: "text-teal-400", guide_en: "Comment replies.", guide_bn: "কমেন্টের সেরা রিপ্লাই।", ph_en: "Paste comment...", ph_bn: "কমেন্ট দিন..." },
+            tone: { en: "Speaking Tone", bn: "কথা বলার ধরন", icon: "microphone-alt", color: "text-indigo-400", guide_en: "Delivery style.", guide_bn: "কথার ভঙ্গি ও স্টাইল।", ph_en: "Tone type...", ph_bn: "ধরন কেমন?..." },
+            policy: { en: "Policy & Safety", bn: "ভিডিওর আইন ও সতর্কতা", icon: "user-shield", color: "text-yellow-500", guide_en: "Safety tips.", guide_bn: "পলিসি ও কপিরাইট নিয়ম।", ph_en: "Content info...", ph_bn: "কনটেন্ট তথ্য..." },
+            trending: { en: "What's Viral Now?", bn: "এখন কী ভাইরাল হচ্ছে?", icon: "chart-line", color: "text-rose-500", guide_en: "Trending ideas.", guide_bn: "বর্তমান ভাইরাল টপিক।", ph_en: "Niche...", ph_bn: "নিচ..." },
+            seo: { en: "Search SEO Expert", bn: "সার্চে সবার আগে আসা", icon: "search-plus", color: "text-slate-400", guide_en: "SEO strategies.", guide_bn: "সার্চ এসইও টিপস।", ph_en: "Keywords...", ph_bn: "কী-ওয়ার্ড লিখুন..." }
         };
 
         const translations = {
-            en: { mainTitle: "ViralPulse AI", mainSub: "Ultimate AI suite for Content Creators. No login, no email, 100% private.", langBtn: "Switch to বাংলা", platformLabel: "Select Platform", btnText: "GENERATE SOLUTION" },
-            bn: { mainTitle: "ViralPulse AI", mainSub: "ইউটিউব, ফেসবুক এবং টিকটক ক্রিয়েটরদের জন্য কমপ্লিট এআই সলিউশন। কোনো লগইন বা ইমেইল লাগবে না।", langBtn: "English-এ দেখুন", platformLabel: "প্ল্যাটফর্ম বেছে নিন", btnText: "সমাধান দেখুন" }
+            en: { mainTitle: "ViralPulse AI", mainSub: "Ultimate AI suite for Content Creators. No login, 100% private.", langBtn: "Switch to বাংলা", platformLabel: "Select Platform", btnText: "GENERATE SOLUTION" },
+            bn: { mainTitle: "ViralPulse AI", mainSub: "ইউটিউব, ফেসবুক এবং টিকটক ক্রিয়েটরদের জন্য কমপ্লিট এআই সলিউশন। কোনো লগইন লাগবে না।", langBtn: "English-এ দেখুন", platformLabel: "প্ল্যাটফর্ম বেছে নিন", btnText: "সমাধান দেখুন" }
         };
 
         function toggleLang() { currentLang = currentLang === 'en' ? 'bn' : 'en'; renderUI(); }
@@ -131,9 +177,9 @@
             btn.disabled = true;
             btn.innerHTML = `<div class="loader"></div>`;
             resBox.classList.remove('hidden');
-            responseDiv.innerText = currentLang === 'bn' ? "এআই কাজ করছে..." : "Processing...";
+            responseDiv.innerText = currentLang === 'bn' ? "Ars কাজ করছে..." : "Ars is working...";
 
-            const _p = `Platform: ${selectedPlatform}. Tool: ${toolConfig[currentTool].en}. Input: ${input}. Reply in ${currentLang === 'bn' ? 'Bangla' : 'English'}.`;
+            const _p = `Platform: ${selectedPlatform}. Tool: ${toolConfig[currentTool].en}. Input: ${input}. Reply in ${currentLang === 'bn' ? 'Bangla' : 'English'}. As a helpful creator assistant.`;
 
             try {
                 const r = await fetch('https://api.groq.com/openai/v1/chat/completions', {
@@ -153,11 +199,12 @@
                     const dG = await rG.json();
                     responseDiv.innerText = dG.candidates[0].content.parts[0].text;
                 } catch (err) {
-                    responseDiv.innerText = "Error! Please try again.";
+                    responseDiv.innerText = "Error! Connection slow.";
                 }
             } finally {
                 btn.disabled = false;
                 btn.innerHTML = `<span>${translations[currentLang].btnText}</span> <i class="fas fa-magic"></i>`;
+                resBox.scrollIntoView({ behavior: 'smooth' });
             }
         }
 
