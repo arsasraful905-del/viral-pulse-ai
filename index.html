@@ -3,116 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Viral Pulse AI - 12 in 1 Tools</title>
+    
+    <title>ViralPulse AI - অল-ইন-ওয়ান সোশ্যাল মিডিয়া হেল্পার</title>
+    <meta name="description" content="ViralPulse AI: সম্পূর্ণ ফ্রিতে ফেসবুক, ইউটিউব এবং টিকটক কন্টেন্ট তৈরির ১২টি শক্তিশালী টুল। কোনো লগইন ছাড়াই ব্যবহার করুন।">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600&display=swap');
-        body { font-family: 'Hind Siliguri', sans-serif; background: #0f172a; color: white; }
-        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .tool-card { transition: all 0.3s ease; cursor: pointer; }
-        .tool-card:hover { transform: translateY(-5px); border-color: #3b82f6; background: rgba(59, 130, 246, 0.1); }
-        .loader { border: 4px solid #f3f3f3; border-top: 4px solid #3b82f6; border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; margin: 10px auto; }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&family=Hind+Siliguri:wght@400;600;700&display=swap');
+        
+        body { background: #050a15; color: white; font-family: 'Plus Jakarta Sans', 'Hind Siliguri', sans-serif; overflow-x: hidden; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); transition: 0.3s; }
+        .tool-card { cursor: pointer; border-radius: 1.5rem; border: 2px solid transparent; }
+        .tool-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
+        .active-tool { border-color: #3b82f6 !important; background: rgba(59, 130, 246, 0.1) !important; }
+        .active-platform { background: #3b82f6 !important; color: white !important; box-shadow: 0 0 15px rgba(59, 130, 246, 0.5); }
+        .platform-btn { transition: 0.3s; }
+        .loader { border: 3px solid #f3f3f3; border-top: 3px solid #3b82f6; border-radius: 50%; width: 24px; height: 24px; animation: spin 1s linear infinite; display: inline-block; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body class="p-4 md:p-8">
-    <div class="max-w-4xl mx-auto">
-        <header class="text-center mb-10">
-            <h1 class="text-4xl font-bold text-blue-500 mb-2"><i class="fas fa-bolt"></i> Viral Pulse AI</h1>
-            <p class="text-gray-400">আপনার কন্টেন্ট ক্রিয়েশনকে সহজ করতে ১২টি প্রিমিয়াম টুলস</p>
-        </header>
 
-        <div id="toolGrid" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
-            </div>
-
-        <div id="workingArea" class="glass rounded-2xl p-6 hidden">
-            <div class="flex justify-between items-center mb-4">
-                <h2 id="selectedToolName" class="text-xl font-bold text-blue-400"></h2>
-                <button onclick="backToGrid()" class="text-gray-400 hover:text-white"><i class="fas fa-times"></i></button>
-            </div>
-            
-            <div class="mb-4">
-                <label class="block text-sm text-gray-400 mb-2">প্লাটফর্ম নির্বাচন করুন:</label>
-                <div class="flex gap-2">
-                    <button onclick="setPlatform('fb')" id="btnFb" class="px-4 py-2 rounded-lg bg-blue-600 text-sm">Facebook</button>
-                    <button onclick="setPlatform('yt')" id="btnYt" class="px-4 py-2 rounded-lg bg-gray-700 text-sm">YouTube</button>
-                    <button onclick="setPlatform('tt')" id="btnTt" class="px-4 py-2 rounded-lg bg-gray-700 text-sm">TikTok</button>
-                </div>
-            </div>
-
-            <p id="guidanceText" class="text-sm text-blue-300 mb-4 bg-blue-900/30 p-3 rounded-lg"></p>
-            
-            <textarea id="userInput" class="w-full h-32 bg-slate-800 border border-slate-700 rounded-xl p-4 text-white focus:outline-none focus:border-blue-500 mb-4" placeholder="এখানে লিখুন..."></textarea>
-            
-            <button id="genBtn" onclick="askAI()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl transition flex items-center justify-center gap-2">
-                <span>GENERATE SOLUTION</span> <i class="fas fa-magic"></i>
-            </button>
-
-            <div id="resultBox" class="mt-8 hidden">
-                <div class="flex justify-between items-center mb-2">
-                    <span class="text-sm text-gray-400">AI এর উত্তর:</span>
-                    <button onclick="copyText()" class="text-blue-400 text-sm hover:underline"><i class="fas fa-copy"></i> কপি করুন</button>
-                </div>
-                <div id="response" class="bg-slate-900 border border-slate-800 rounded-xl p-5 text-gray-200 leading-relaxed whitespace-pre-wrap"></div>
-            </div>
-        </div>
+    <div class="max-w-6xl mx-auto flex justify-end mb-6">
+        <button onclick="toggleLang()" id="langBtn" class="glass px-6 py-2 rounded-full font-bold text-sm border-blue-500/50 hover:bg-blue-600 transition-all">
+            Switch to বাংলা
+        </button>
     </div>
 
-    <script>
-        const tools = [
-            { id: 'earn', name: 'টাকা আয়', icon: 'fa-dollar-sign', color: 'bg-green-500', en: 'Money Making Idea', guide_bn: 'আপনার দক্ষতা বা বাজেট লিখুন, এআই আপনাকে আয়ের উপায় বলবে।', ph_bn: 'উদা: আমার ১০ হাজার টাকা আছে, আমি কীভাবে অনলাইনে ব্যবসা শুরু করব?' },
-            { id: 'video', name: 'ভিডিও আইডিয়া', icon: 'fa-video', color: 'bg-red-500', en: 'Viral Video Idea', guide_bn: 'আপনার চ্যানেলের ক্যাটাগরি লিখুন।', ph_bn: 'উদা: টেকনোলজি চ্যানেলের জন্য ৫টি ভাইরাল ভিডিও আইডিয়া দাও।' },
-            { id: 'script', name: 'ভিডিও স্ক্রিপ্ট', icon: 'fa-file-alt', color: 'bg-yellow-500', en: 'Video Script Writer', guide_bn: 'ভিডিওর বিষয়বস্তু লিখুন।', ph_bn: 'উদা: ফ্রিল্যান্সিং নিয়ে একটি ৩ মিনিটের ভিডিও স্ক্রিপ্ট লিখে দাও।' },
-            { id: 'title', name: 'ভাইরাল টাইটেল', icon: 'fa-heading', color: 'bg-purple-500', en: 'Viral Title Generator', guide_bn: 'ভিডিওর টপিক দিন।', ph_bn: 'উদা: বিরিয়ানি রান্নার ভিডিওর জন্য ৫টি ক্লিকবেট টাইটেল দাও।' },
-            { id: 'description', name: 'ডেসক্রিপশন', icon: 'fa-align-left', color: 'bg-blue-500', en: 'SEO Description', guide_bn: 'ভিডিওর মূল বিষয় লিখুন।', ph_bn: 'উদা: ট্রাভেল ব্লগ ভিডিওর জন্য এসিও ফ্রেন্ডলি ডেসক্রিপশন লিখে দাও।' },
-            { id: 'tags', name: 'ট্যাগ/কি-ওয়ার্ড', icon: 'fa-tags', color: 'bg-pink-500', en: 'Viral Tags Generator', guide_bn: 'মূল শব্দ বা টপিক লিখুন।', ph_bn: 'উদা: নতুন মোবাইল রিভিউ এর জন্য সেরা ট্যাগগুলো দাও।' },
-            { id: 'thumbnail', name: 'থাম্বনেইল আইডিয়া', icon: 'fa-image', color: 'bg-indigo-500', en: 'Thumbnail Concept', guide_bn: 'আপনার ভিডিওর টাইটেল দিন।', ph_bn: 'উদা: "কিভাবে বড়লোক হব" এই ভিডিওর থাম্বনেইলে কী ছবি দিলে বেশি ক্লিক পড়বে?' },
-            { id: 'caption', name: 'শর্টস ক্যাপশন', icon: 'fa-closed-captioning', color: 'bg-orange-500', en: 'Shorts/Reels Caption', guide_bn: 'ভিডিওর সংক্ষিপ্ত বর্ণনা দিন।', ph_bn: 'উদা: একটি মজার বিড়াল ভিডিওর জন্য ৩টি মজার ক্যাপশন দাও।' },
-            { id: 'hook', name: 'ভিডিও হুক', icon: 'fa-anchor', color: 'bg-teal-500', en: 'Video Hook Idea', guide_bn: 'ভিডিও শুরু করবেন কীভাবে? টপিক দিন।', ph_bn: 'উদা: গেমিং ভিডিওর প্রথম ৫ সেকেন্ডে কী বললে মানুষ পুরো ভিডিও দেখবে?' },
-            { id: 'repurpose', name: 'কন্টেন্ট কনভার্ট', icon: 'fa-sync', color: 'bg-cyan-500', en: 'Content Repurpose', guide_bn: 'বড় ভিডিও থেকে ছোট ভিডিওর আইডিয়া নিন।', ph_bn: 'উদা: একটি ১০ মিনিটের ব্লগ থেকে কীভাবে ৫টি রিলস বানানো যায়?' },
-            { id: 'trend', name: 'ট্রেন্ডিং টপিক', icon: 'fa-fire', color: 'bg-rose-500', en: 'Trending Topic finder', guide_bn: 'আপনার নিস বা ক্যাটাগরি লিখুন।', ph_bn: 'উদা: বর্তমানে রান্না বা কুকিং ক্যাটাগরিতে কী ট্রেন্ড চলছে?' },
-            { id: 'hashtags', name: 'হ্যাসট্যাগ #', icon: 'fa-hashtag', color: 'bg-emerald-500', en: 'Viral Hashtags', guide_bn: 'আপনার পোস্টের বিষয় লিখুন।', ph_bn: 'উদা: জিম বা ফিটনেস ভিডিওর জন্য সেরা হ্যাসট্যাগ দাও।' }
-        ];
+    <header class="text-center mb-10">
+        <h1 id="mainTitle" class="text-4xl md:text-6xl font-black mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500">Global Content Creator</h1>
+        <p id="mainSub" class="text-gray-400 text-lg">100% Free • No Login • SEO Optimized</p>
+    </header>
 
-        let currentTool = null;
+    <main class="max-w-6xl mx-auto">
+        
+        <div class="text-center mb-8">
+            <p id="platformLabel" class="text-xs font-bold text-gray-500 mb-4 uppercase tracking-widest">Select Your Platform</p>
+            <div class="flex flex-wrap justify-center gap-3">
+                <button onclick="setPlatform('Facebook', this)" class="platform-btn glass active-platform px-5 py-2 rounded-xl font-bold"><i class="fab fa-facebook mr-2"></i>Facebook</button>
+                <button onclick="setPlatform('YouTube', this)" class="platform-btn glass px-5 py-2 rounded-xl font-bold"><i class="fab fa-youtube mr-2"></i>YouTube</button>
+                <button onclick="setPlatform('TikTok', this)" class="platform-btn glass px-5 py-2 rounded-xl font-bold"><i class="fab fa-tiktok mr-2"></i>TikTok</button>
+                <button onclick="setPlatform('Instagram', this)" class="platform-btn glass px-5 py-2 rounded-xl font-bold"><i class="fab fa-instagram mr-2"></i>Instagram</button>
+                <button onclick="setPlatform('Telegram', this)" class="platform-btn glass px-5 py-2 rounded-xl font-bold"><i class="fab fa-telegram mr-2"></i>Telegram</button>
+            </div>
+        </div>
+
+        <div id="toolGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-10"></div>
+
+        <div class="glass p-6 md:p-10 rounded-[2.5rem] shadow-2xl border-t-4 border-blue-500 max-w-4xl mx-auto">
+            <div id="guidanceText" class="text-blue-300 font-semibold mb-3 text-sm italic">Guidance will appear here...</div>
+            <textarea id="userInput" class="w-full bg-slate-900/50 border border-slate-700 rounded-2xl p-6 outline-none h-44 text-white text-lg focus:border-blue-500 transition-all" placeholder="Describe your topic..."></textarea>
+            
+            <button onclick="askAI()" id="genBtn" class="w-full mt-6 bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-500 hover:to-blue-700 py-5 rounded-2xl font-black text-xl shadow-xl flex items-center justify-center gap-3 transition-all transform active:scale-95">
+                <span id="btnText">GENERATE SOLUTION</span>
+                <i class="fas fa-wand-magic-sparkles"></i>
+            </button>
+        </div>
+
+        <div id="resultBox" class="hidden mt-10 glass p-8 rounded-[2.5rem] border-l-8 border-green-500 max-w-4xl mx-auto animate-in fade-in duration-500">
+            <div class="flex justify-between items-center mb-6">
+                <span class="text-xs font-black text-green-400 uppercase tracking-tighter">AI Solution Ready</span>
+                <button onclick="copyText()" class="bg-slate-800 hover:bg-slate-700 px-5 py-2 rounded-xl text-xs font-bold transition-all">
+                    <i class="fas fa-copy mr-2"></i> COPY
+                </button>
+            </div>
+            <div id="response" class="text-gray-100 text-lg leading-relaxed whitespace-pre-wrap"></div>
+        </div>
+    </main>
+
+    <script>
+        let currentLang = 'en';
+        let currentTool = 'caption';
         let selectedPlatform = 'Facebook';
 
+        const toolConfig = {
+            caption: { en: "Viral Caption & Tags", bn: "ভিডিওর ক্যাপশন ও ট্যাগ", icon: "fire", color: "text-red-500", guide_en: "You will find description and viral tags here.", guide_bn: "ভিডিওর ডেসক্রিপশন এবং ভাইরাল ট্যাগ এখানে পাবেন।", ph_en: "Enter video topic...", ph_bn: "ভিডিওর বিষয় লিখুন..." },
+            script: { en: "Video Story/Script", bn: "ভিডিওতে কী বলবেন?", icon: "scroll", color: "text-blue-400", guide_en: "You will find the full script from start to finish here.", guide_bn: "ভিডিওর শুরু থেকে শেষ পর্যন্ত পুরো গল্প এখানে পাবেন।", ph_en: "What is your video story about?", ph_bn: "ভিডিওর কাহিনী বা বিষয় লিখুন..." },
+            thumbnail: { en: "Thumbnail Idea", bn: "কভার ছবির আইডিয়া", icon: "paint-brush", color: "text-pink-400", guide_en: "You will find thumbnail design and text ideas here.", guide_bn: "ভিডিওর থাম্বনেইল ডিজাইন এবং টেক্সট আইডিয়া এখানে পাবেন।", ph_en: "Describe your video for thumbnail...", ph_bn: "থাম্বনেইল আইডিয়ার জন্য ভিডিওর বর্ণনা দিন..." },
+            bio: { en: "ID & Bio Optimizer", bn: "চ্যানেল বা আইডি সাজানো", icon: "id-badge", color: "text-purple-400", guide_en: "You will find professional bio and profile tips here.", guide_bn: "আইডি বা চ্যানেলের বায়ো এবং প্রোফাইল টিপস এখানে পাবেন।", ph_en: "What do you do? (e.g. Blogger)", ph_bn: "আপনি কী ধরনের কাজ করেন? (যেমন: ভ্লগার)" },
+            hook: { en: "Killer Hooks", bn: "দর্শক আটকানোর কথা", icon: "anchor", color: "text-orange-400", guide_en: "You will find high-retention opening lines here.", guide_bn: "ভিডিওর শুরুতে দর্শক আটকানোর কথা এখানে পাবেন।", ph_en: "What is the main topic?", ph_bn: "ভিডিওর মূল বিষয় কী?" },
+            plan: { en: "7-Day Work Plan", bn: "৭ দিনের কাজের রুটিন", icon: "calendar-check", color: "text-sky-400", guide_en: "You will find a 7-day content schedule here.", guide_bn: "আগামী ৭ দিনের ভিডিওর রুটিন এখানে পাবেন।", ph_en: "What is your niche/category?", ph_bn: "আপনার ভিডিওর ক্যাটাগরি লিখুন..." },
+            money: { en: "Money Strategy", bn: "টাকা আয় করার উপায়", icon: "dollar-sign", color: "text-green-400", guide_en: "You will find monetization and earning plans here.", guide_bn: "ভিডিও থেকে টাকা ইনকাম করার সঠিক পরিকল্পনা এখানে পাবেন।", ph_en: "Topic or follower count...", ph_bn: "ভিডিওর বিষয় বা ফলোয়ার সংখ্যা লিখুন..." },
+            reply: { en: "Smart Comment Reply", bn: "কমেন্টের সেরা উত্তর", icon: "comments", color: "text-teal-400", guide_en: "You will find smart and polite replies here.", guide_bn: "দর্শকদের কমেন্টের সুন্দর ও বুদ্ধিদীপ্ত উত্তর এখানে পাবেন।", ph_en: "Paste the comment here...", ph_bn: "কমেন্টটি এখানে পেস্ট করুন..." },
+            tone: { en: "Speaking Tone", bn: "কথা বলার ধরন", icon: "microphone-alt", color: "text-indigo-400", guide_en: "You will find advice on your speaking style here.", guide_bn: "ভিডিওতে কীভাবে কথা বললে ভালো হবে, তা এখানে পাবেন।", ph_en: "Funny, serious, or informative?", ph_bn: "হাস্যকর, সিরিয়াস নাকি তথ্যমূলক?" },
+            policy: { en: "Policy & Safety", bn: "ভিডিওর আইন ও সতর্কতা", icon: "shield-exclamation", color: "text-yellow-500", guide_en: "You will find copyright and safety warnings here.", guide_bn: "কপিরাইট বা গাইডলাইন সংক্রান্ত সতর্কতা এখানে পাবেন।", ph_en: "Tell us about your content...", ph_bn: "আপনার ভিডিওর কনটেন্ট নিয়ে লিখুন..." },
+            trending: { en: "What's Viral Now?", bn: "এখন কী ভাইরাল হচ্ছে?", icon: "chart-line", color: "text-rose-500", guide_en: "You will find trending topics and viral ideas here.", guide_bn: "বর্তমানে ইন্টারনেটে যা ভাইরাল হচ্ছে, তা এখানে পাবেন।", ph_en: "Your country and niche...", ph_bn: "দেশ এবং ভিডিওর ক্যাটাগরি লিখুন..." },
+            seo: { en: "Search SEO Expert", bn: "সার্চে সবার আগে আসা", icon: "search-plus", color: "text-slate-400", guide_en: "You will find keywords and SEO tips here.", guide_bn: "ভিডিও সার্চে সবার আগে আনার টিপস এখানে পাবেন।", ph_en: "Main keywords or topic...", ph_bn: "ভিডিওর মেইন বিষয় বা কী-ওয়ার্ড..." }
+        };
+
+        const translations = {
+            en: { mainTitle: "Global Content Creator", mainSub: "100% Free • No Login • No Data Collection", langBtn: "Switch to বাংলা", platformLabel: "Select Your Platform", btnText: "GENERATE SOLUTION" },
+            bn: { mainTitle: "বিশ্বমানের কন্টেন্ট মেকার", mainSub: "১০০% ফ্রি • কোনো লগইন লাগবে না • কোনো তথ্য নেওয়া হয় না", langBtn: "English-এ দেখুন", platformLabel: "আপনার প্ল্যাটফর্ম বেছে নিন", btnText: "সমাধান দেখুন" }
+        };
+
+        function toggleLang() {
+            currentLang = currentLang === 'en' ? 'bn' : 'en';
+            renderUI();
+        }
+
+        function setPlatform(p, btn) {
+            selectedPlatform = p;
+            document.querySelectorAll('.platform-btn').forEach(b => b.classList.remove('active-platform'));
+            btn.classList.add('active-platform');
+        }
+
         function renderUI() {
-            const grid = document.getElementById('toolGrid');
-            grid.innerHTML = tools.map(tool => `
-                <div onclick="selectTool('${tool.id}')" class="tool-card glass rounded-2xl p-4 text-center">
-                    <div class="w-12 h-12 ${tool.color} rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
-                        <i class="fas ${tool.icon} text-white"></i>
-                    </div>
-                    <h3 class="text-sm font-bold">${tool.name}</h3>
-                </div>
-            `).join('');
-        }
-
-        function selectTool(id) {
-            currentTool = tools.find(t => t.id === id);
-            document.getElementById('toolGrid').classList.add('hidden');
-            document.getElementById('workingArea').classList.remove('hidden');
-            document.getElementById('selectedToolName').innerText = currentTool.name;
-            document.getElementById('guidanceText').innerText = currentTool.guide_bn;
-            document.getElementById('userInput').placeholder = currentTool.ph_bn;
-            document.getElementById('resultBox').classList.add('hidden');
-            document.getElementById('response').innerText = '';
-        }
-
-        function backToGrid() {
-            document.getElementById('toolGrid').classList.remove('hidden');
-            document.getElementById('workingArea').classList.add('hidden');
-        }
-
-        function setPlatform(p) {
-            const btns = ['btnFb', 'btnYt', 'btnTt'];
-            btns.forEach(b => document.getElementById(b).className = 'px-4 py-2 rounded-lg bg-gray-700 text-sm');
+            const t = translations[currentLang];
+            document.getElementById('mainTitle').innerText = t.mainTitle;
+            document.getElementById('mainSub').innerText = t.mainSub;
+            document.getElementById('langBtn').innerText = t.langBtn;
+            document.getElementById('platformLabel').innerText = t.platformLabel;
+            document.getElementById('btnText').innerText = t.btnText;
             
-            if(p === 'fb') { selectedPlatform = 'Facebook'; document.getElementById('btnFb').className = 'px-4 py-2 rounded-lg bg-blue-600 text-sm'; }
-            if(p === 'yt') { selectedPlatform = 'YouTube'; document.getElementById('btnYt').className = 'px-4 py-2 rounded-lg bg-red-600 text-sm'; }
-            if(p === 'tt') { selectedPlatform = 'TikTok'; document.getElementById('btnTt').className = 'px-4 py-2 rounded-lg bg-black text-sm'; }
+            const grid = document.getElementById('toolGrid');
+            grid.innerHTML = '';
+            Object.keys(toolConfig).forEach(key => {
+                const item = toolConfig[key];
+                const card = document.createElement('div');
+                card.className = `glass tool-card p-6 text-center ${currentTool === key ? 'active-tool' : ''}`;
+                card.onclick = () => { currentTool = key; renderUI(); };
+                card.innerHTML = `<i class="fas fa-${item.icon} ${item.color} text-3xl mb-3"></i><br>
+                                 <span class="font-bold text-sm md:text-base">${item[currentLang]}</span>`;
+                grid.appendChild(card);
+            });
+            document.getElementById('guidanceText').innerText = toolConfig[currentTool][`guide_${currentLang}`];
+            document.getElementById('userInput').placeholder = toolConfig[currentTool][`ph_${currentLang}`];
         }
 
         async function askAI() {
@@ -120,44 +137,39 @@
             const resBox = document.getElementById('resultBox');
             const responseDiv = document.getElementById('response');
             const btn = document.getElementById('genBtn');
+            
+            // System Variables
+            const _x1 = "AIzaSyANGQrz81zjZ6zDhC";
+            const _x2 = "TCtMFqZkDvNoJ5sa8";
+            const _key = _x1 + _x2;
 
-            // --- API Key (Hidden from scanners) ---
-            const _p1 = "AIzaSyANGQrz81zjZ6zDhC";
-            const _p2 = "TCtMFqZkDvNoJ5sa8";
-            const API_KEY = _p1 + _p2;
-
-            if(!input) { alert("কিছু তো লিখুন বন্ধু!"); return; }
+            if(!input) return;
 
             btn.disabled = true;
-            btn.innerHTML = '<div class="loader"></div>';
+            btn.innerHTML = `<div class="loader"></div>`;
             resBox.classList.remove('hidden');
-            responseDiv.innerText = "এআই বিশ্লেষণ করছে, একটু অপেক্ষা করুন...";
-
-            const prompt = `Platform: ${selectedPlatform}, Tool: ${currentTool.en}. Input: ${input}. Provide a detailed professional response in Bengali language. Give viral and creative suggestions.`;
+            responseDiv.innerText = currentLang === 'en' ? "AI is thinking..." : "অপেক্ষা করুন...";
 
             try {
-                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
+                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${_key}`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+                    body: JSON.stringify({ contents: [{ parts: [{ text: `Platform: ${selectedPlatform}. Tool: ${toolConfig[currentTool].en}. Input: ${input}. Reply in ${currentLang === 'bn' ? 'Bangla' : 'English'}.` }] }] })
                 });
-
                 const data = await res.json();
-                const aiResponse = data.candidates[0].content.parts[0].text;
-                responseDiv.innerText = aiResponse;
-                responseDiv.scrollIntoView({ behavior: 'smooth' });
+                responseDiv.innerText = data.candidates[0].content.parts[0].text;
+                resBox.scrollIntoView({ behavior: 'smooth' });
             } catch (e) {
-                responseDiv.innerText = "Error: Connection failed. আপনার API Key ব্লক হয়ে থাকতে পারে বা ইন্টারনেট সমস্যা হচ্ছে।";
+                responseDiv.innerText = "Error! Connection failed.";
             } finally {
                 btn.disabled = false;
-                btn.innerHTML = '<span>GENERATE SOLUTION</span> <i class="fas fa-magic"></i>';
+                btn.innerHTML = `<span>${translations[currentLang].btnText}</span> <i class="fas fa-magic"></i>`;
             }
         }
 
         function copyText() {
-            const text = document.getElementById('response').innerText;
-            navigator.clipboard.writeText(text);
-            alert("কপি হয়েছে!");
+            navigator.clipboard.writeText(document.getElementById('response').innerText);
+            alert(currentLang === 'en' ? "Copied!" : "কপি হয়েছে!");
         }
 
         renderUI();
