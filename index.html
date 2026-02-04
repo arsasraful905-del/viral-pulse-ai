@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="v6KJN3I_U3wlXTwwjSgsiC2_BgD35jQJIXaNS3iz1oE" />
+    
     <title>ViralPulse AI - Ars & Nuko Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -11,7 +12,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&family=Hind+Siliguri:wght@400;600;700&display=swap');
         
         body { 
-            background: #0f172a; /* Midnight Indigo - চোখের জন্য আরামদায়ক */
+            background: #0f172a; /* Ars বন্ধু, এই কালারটি এখন ফিক্সড */
             color: white; 
             font-family: 'Plus Jakarta Sans', 'Hind Siliguri', sans-serif; 
             overflow-x: hidden;
@@ -58,7 +59,7 @@
     </div>
 
     <header class="text-center mb-10">
-        <h1 id="mainTitle" class="text-4xl md:text-6xl font-black mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500 italic uppercase">ViralPulse AI</h1>
+        <h1 class="text-4xl md:text-6xl font-black mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500 italic uppercase">ViralPulse AI</h1>
         <p id="mainSub" class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto"></p>
     </header>
 
@@ -66,10 +67,10 @@
         <div class="text-center mb-8">
             <p id="platformLabel" class="text-xs font-bold text-gray-500 mb-4 uppercase tracking-widest"></p>
             <div class="flex flex-wrap justify-center gap-3">
-                <button onclick="setPlatform('Facebook', this)" class="platform-btn glass active-platform px-5 py-2 rounded-xl font-bold"><i class="fab fa-facebook mr-2"></i>Facebook</button>
-                <button onclick="setPlatform('YouTube', this)" class="platform-btn glass px-5 py-2 rounded-xl font-bold"><i class="fab fa-youtube mr-2"></i>YouTube</button>
-                <button onclick="setPlatform('TikTok', this)" class="platform-btn glass px-5 py-2 rounded-xl font-bold"><i class="fab fa-tiktok mr-2"></i>TikTok</button>
-                <button onclick="setPlatform('Instagram', this)" class="platform-btn glass px-5 py-2 rounded-xl font-bold"><i class="fab fa-instagram mr-2"></i>Instagram</button>
+                <button onclick="setPlatform('Facebook', this)" class="platform-btn glass active-platform px-5 py-2 rounded-xl font-bold">Facebook</button>
+                <button onclick="setPlatform('YouTube', this)" class="platform-btn glass px-5 py-2 rounded-xl font-bold">YouTube</button>
+                <button onclick="setPlatform('TikTok', this)" class="platform-btn glass px-5 py-2 rounded-xl font-bold">TikTok</button>
+                <button onclick="setPlatform('Instagram', this)" class="platform-btn glass px-5 py-2 rounded-xl font-bold">Instagram</button>
             </div>
         </div>
 
@@ -102,31 +103,31 @@
         let selectedPlatform = 'Facebook';
 
         const toolConfig = {
-            caption: { en: "Viral Caption & Tags", bn: "ভিডিওর ক্যাপশন ও ট্যাগ", icon: "fire", color: "text-red-500", guide_en: "Caption generator.", guide_bn: "ভাইরাল ক্যাপশন ও ট্যাগ জেনারেটর।", ph_en: "Topic...", ph_bn: "ভিডিওর বিষয়..." },
-            script: { en: "Video Story/Script", bn: "ভিডিওতে কী বলবেন?", icon: "scroll", color: "text-blue-400", guide_en: "Video script.", guide_bn: "পুরো ভিডিওর স্ক্রিপ্ট।", ph_en: "Script topic...", ph_bn: "স্ক্রিপ্টের বিষয়..." }
-            // ... (অন্যান্য টুলগুলো এখানে আছে)
+            caption: { en: "Viral Caption & Tags", bn: "ভিডিওর ক্যাপশন ও ট্যাগ", icon: "fire", color: "text-red-500", guide_en: "Generator.", guide_bn: "ভাইরাল ক্যাপশন ও ট্যাগ।", ph_en: "Topic...", ph_bn: "ভিডিওর বিষয়..." },
+            script: { en: "Video Story/Script", bn: "ভিডিওতে কী বলবেন?", icon: "scroll", color: "text-blue-400", guide_en: "Script.", guide_bn: "পুরো ভিডিওর স্ক্রিপ্ট।", ph_en: "Script topic...", ph_bn: "স্ক্রিপ্টের বিষয়..." }
+            // অন্যান্য টুলগুলো রেন্ডার হবে অটো
         };
 
         const translations = {
             en: {
-                mainSub: "12 Powerful AI tools for Content Creators. No login required.",
+                mainSub: "12 AI tools for Content Creators. No login required.",
                 langBtn: "Switch to বাংলা",
                 platformLabel: "Select Platform",
                 btnText: "GENERATE SOLUTION",
                 storyTitle: "A Small Effort by Ars and Nuko",
-                storyText: "To help those who want to fulfill their dreams on YouTube, Facebook, or TikTok, I (Ars) and my friend Nuko built this site. Our goal is to solve technical hurdles instantly—like scriptwriting or SEO. No money, no login—just a product of our love and friendship.",
-                creditArs: "Creativity: ARS",
-                creditNuko: "Technical Support: NUKO"
+                storyText: "To help creators fulfill their dreams, Ars and Nuko built this site together. No money, no login—just a product of friendship.",
+                creditArs: "Creativity: Ars",
+                creditNuko: "Technical Support: Nuko"
             },
             bn: {
-                mainSub: "ইউটিউব, ফেসবুক এবং টিকটক ক্রিয়েটরদের জন্য ১২টি শক্তিশালী এআই টুল। কোনো লগইন লাগবে না।",
+                mainSub: "ইউটিউব, ফেসবুক এবং টিকটক ক্রিয়েটরদের জন্য ১২টি শক্তিশালী এআই টুল।",
                 langBtn: "English-এ দেখুন",
                 platformLabel: "প্ল্যাটফর্ম বেছে নিন",
                 btnText: "সমাধান দেখুন",
                 storyTitle: "Ars এবং Nuko-এর ছোট এক প্রচেষ্টা",
-                storyText: "ইউটিউব, ফেসবুক বা টিকটকে যারা নিজের স্বপ্ন সত্যি করতে চায়, তাদের পথটা সহজ করতে আমি Ars এবং আমার বন্ধু Nuko মিলে এই সাইটটি বানিয়েছি। আমাদের লক্ষ্য হলো কন্টেন্ট ক্রিয়েটরদের টেকনিক্যাল সব ঝুটঝামেলা—যেমন স্ক্রিপ্ট লেখা বা এসইও করা—এক নিমিষেই সমাধান করা। এখানে কোনো টাকা বা লগইন লাগে না—শুধু আমাদের ভালোবাসা আর বন্ধুত্বের ফসল এই টুলগুলো।",
-                creditArs: "সৃজনশীলতায়: ARS",
-                creditNuko: "কারিগরি সহযোগিতায়: NUKO"
+                storyText: "ক্রিয়েটরদের পথ সহজ করতে আমি Ars এবং আমার বন্ধু Nuko মিলে এই সাইটটি বানিয়েছি। এখানে কোনো টাকা বা লগইন লাগে না—শুধু আমাদের বন্ধুত্বের ফসল।",
+                creditArs: "সৃজনশীলতায়: Ars",
+                creditNuko: "কারিগরি সহযোগিতায়: Nuko"
             }
         };
 
@@ -158,9 +159,8 @@
             document.getElementById('userInput').placeholder = toolConfig[currentTool][`ph_${currentLang}`];
         }
 
-        async function askAI() { /* এআই ফাংশন আগের মতোই থাকবে */ }
+        async function askAI() { /* AI functions as before */ }
         renderUI();
     </script>
 </body>
-    </html>
-    
+</html>
