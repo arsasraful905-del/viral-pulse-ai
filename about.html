@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - ViralPulse AI</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; background-color: #f4f7f6; color: #333; }
+        .container { max-width: 800px; margin: auto; padding: 30px; background: white; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .lang-switch { text-align: right; margin-bottom: 20px; }
+        .lang-btn { padding: 8px 15px; cursor: pointer; border: none; background: #3498db; color: white; border-radius: 5px; font-weight: bold; }
+        h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .back-home { display: inline-block; margin-top: 30px; text-decoration: none; color: #3498db; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="lang-switch">
+            <button class="lang-btn" onclick="switchLang('en')">English</button>
+            <button class="lang-btn" onclick="switchLang('bn')">বাংলা</button>
+        </div>
+
+        <div id="content-en">
+            <h1>About ViralPulse AI</h1>
+            <p>Welcome to <strong>ViralPulse AI</strong>, the ultimate toolkit for content creators. We provide 12 powerful AI tools to help YouTubers, Facebook, and TikTok creators generate viral scripts, SEO tags, and engaging captions instantly.</p>
+            <p>Our goal is to make content creation easy, free, and accessible to everyone without login barriers.</p>
+            <a href="index.html" class="back-home">← Back to Home</a>
+        </div>
+
+        <div id="content-bn" style="display:none;">
+            <h1>ভাইরাল পালস এআই সম্পর্কে</h1>
+            <p><strong>ViralPulse AI</strong>-এ আপনাকে স্বাগতম! আমরা কন্টেন্ট ক্রিয়েটরদের জন্য একটি পূর্ণাঙ্গ এআই টুলকিট। ইউটিউব, ফেসবুক এবং টিকটক ক্রিয়েটরদের জন্য আমাদের এখানে ১২টি শক্তিশালী টুল রয়েছে যা দিয়ে সহজেই ভাইরাল স্ক্রিপ্ট, এসইও ট্যাগ এবং ক্যাপশন তৈরি করা যায়।</p>
+            <p>আমাদের লক্ষ্য হলো কন্টেন্ট তৈরির কাজকে সহজ, ফ্রি এবং সবার জন্য উন্মুক্ত করা।</p>
+            <a href="index.html" class="back-home">← হোমে ফিরে যান</a>
+        </div>
+    </div>
+
+    <script>
+        function switchLang(lang) {
+            if(lang === 'en') {
+                document.getElementById('content-en').style.display = 'block';
+                document.getElementById('content-bn').style.display = 'none';
+            } else {
+                document.getElementById('content-en').style.display = 'none';
+                document.getElementById('content-bn').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
