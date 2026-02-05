@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - ViralPulse AI</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; margin: 0; padding: 20px; background-color: #f4f7f6; text-align: center; }
+        .container { max-width: 600px; margin: auto; padding: 30px; background: white; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .lang-switch { text-align: right; margin-bottom: 20px; }
+        .lang-btn { padding: 8px 15px; cursor: pointer; border: none; background: #27ae60; color: white; border-radius: 5px; }
+        h1 { color: #2c3e50; }
+        .info-box { background: #f9f9f9; padding: 15px; border-radius: 10px; margin: 20px 0; border-left: 5px solid #27ae60; text-align: left; }
+        .contact-link { color: #2c3e50; text-decoration: none; font-weight: bold; display: block; margin: 10px 0; }
+        .contact-link:hover { color: #27ae60; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="lang-switch">
+            <button class="lang-btn" onclick="switchLang('en')">English</button>
+            <button class="lang-btn" onclick="switchLang('bn')">বাংলা</button>
+        </div>
+
+        <div id="content-en">
+            <h1>Contact Us</h1>
+            <p>Have questions or suggestions? Reach out to us!</p>
+            <div class="info-box">
+                <strong>Email:</strong> <a href="mailto:Arsasraful905@gmail.com" class="contact-link">Arsasraful905@gmail.com</a>
+                <strong>WhatsApp:</strong> <a href="https://wa.me/8801581392888" class="contact-link">+880 1581-392888</a>
+            </div>
+            <a href="index.html" style="text-decoration:none; color:#3498db;">← Back to Home</a>
+        </div>
+
+        <div id="content-bn" style="display:none;">
+            <h1>যোগাযোগ করুন</h1>
+            <p>আপনার কোনো প্রশ্ন বা পরামর্শ থাকলে আমাদের সাথে যোগাযোগ করুন!</p>
+            <div class="info-box">
+                <strong>ইমেইল:</strong> <a href="mailto:Arsasraful905@gmail.com" class="contact-link">Arsasraful905@gmail.com</a>
+                <strong>হোয়াটসঅ্যাপ:</strong> <a href="https://wa.me/8801581392888" class="contact-link">+৮৮০ ১৫৮১-৩৯২৮৮৮</a>
+            </div>
+            <a href="index.html" style="text-decoration:none; color:#3498db;">← হোমে ফিরে যান</a>
+        </div>
+    </div>
+
+    <script>
+        function switchLang(lang) {
+            if(lang === 'en') {
+                document.getElementById('content-en').style.display = 'block';
+                document.getElementById('content-bn').style.display = 'none';
+            } else {
+                document.getElementById('content-en').style.display = 'none';
+                document.getElementById('content-bn').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
