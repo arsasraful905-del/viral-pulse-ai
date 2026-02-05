@@ -111,29 +111,33 @@
         function toggleLang() { currentLang = currentLang === 'en' ? 'bn' : 'en'; renderUI(); }
         function setPlatform(p, btn) { selectedPlatform = p; document.querySelectorAll('.platform-btn').forEach(b => b.classList.remove('active-platform')); btn.classList.add('active-platform'); }
 
-        function renderUI() {
-            const t = translations[currentLang];
-            document.getElementById('mainSub').innerText = t.mainSub;
-            document.getElementById('langBtn').innerText = t.langBtn;
-            document.getElementById('platformLabel').innerText = t.platformLabel;
-            document.getElementById('btnText').innerText = t.btnText;
-            document.getElementById('navHome').innerText = t.navHome;
-            document.getElementById('navAbout').innerText = t.navAbout;
-            document.getElementById('navContact').innerText = t.navContact;
-            document.getElementById('copyBtn').innerHTML = `<i class="fas fa-copy"></i> ${t.copy}`;
-            
-            const grid = document.getElementById('toolGrid');
-            grid.innerHTML = '';
-            Object.keys(toolConfig).forEach(key => {
-                const item = toolConfig[key];
-                const card = document.createElement('div');
-                card.className = `glass-card p-4 text-center cursor-pointer ${currentTool === key ? 'active-tool' : ''}`;
-                card.onclick = () => { currentTool = key; renderUI(); };
-                card.innerHTML = `<i class="fas fa-${item.icon} ${item.color} text-2xl mb-2"></i><h3 class="font-bold text-sm mb-1">${item[currentLang]}</h3><p class="text-[10px] text-slate-400 leading-tight">${item['desc_' + currentLang]}</p>`;
-                grid.appendChild(card);
-            });
-            document.getElementById('guidanceText').innerText = currentLang === 'bn' ? `${toolConfig[currentTool].bn} এর বিষয়:` : `${toolConfig[currentTool].en} Topic:`;
-        }
+function renderUI() {
+    const t = translations[currentLang];
+    document.getElementById('mainSub').innerText = t.mainSub;
+    document.getElementById('langBtn').innerText = t.langBtn;
+    document.getElementById('platformLabel').innerText = t.platformLabel;
+    document.getElementById('btnText').innerText = t.btnText;
+    document.getElementById('navHome').innerText = t.navHome;
+    document.getElementById('navAbout').innerText = t.navAbout;
+    document.getElementById('navContact').innerText = t.navContact;
+    document.getElementById('copyBtn').innerHTML = `<i class="fas fa-copy"></i> ${t.copy}`;
+    
+    const inputArea = document.getElementById('userInput');
+    inputArea.placeholder = currentLang === 'bn' ? "আপনার ভিডিওর বিষয়বস্তু এখানে লিখুন..." : "Write your video topic here...";
+    
+    const grid = document.getElementById('toolGrid');
+    grid.innerHTML = '';
+    Object.keys(toolConfig).forEach(key => {
+        const item = toolConfig[key];
+        const card = document.createElement('div');
+        card.className = `glass-card p-4 text-center cursor-pointer ${currentTool === key ? 'active-tool' : ''}`;
+        card.onclick = () => { currentTool = key; renderUI(); };
+        card.innerHTML = `<i class="fas fa-${item.icon} ${item.color} text-2xl mb-2"></i><h3 class="font-bold text-sm mb-1">${item[currentLang]}</h3><p class="text-[10px] text-slate-400 leading-tight">${item['desc_' + currentLang]}</p>`;
+        grid.appendChild(card);
+    });
+    document.getElementById('guidanceText').innerText = currentLang === 'bn' ? `${toolConfig[currentTool].bn} এর বিষয়:` : `${toolConfig[currentTool].en} Topic:`;
+}
+
 
         async function askAI() {
             const input = document.getElementById('userInput').value;
