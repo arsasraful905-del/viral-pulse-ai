@@ -4,31 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="v6KJN3I_U3wlXTwwjSgsiC2_BgD35jQJIXaNS3iz1oE" />
-    <title>ViralPulse AI - Content Creator Tools</title>
+    <title>ViralPulse AI - Ultimate AI Tools for Content Creators</title>
+    <meta name="description" content="ViralPulse AI offers 12 powerful AI tools for YouTube, Facebook, and TikTok creators. Created by Ars & Nuko.">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta property="og:image" content="logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Hind+Siliguri:wght@400;600;700&display=swap');
-        body { background: #ffffff; color: #1e293b; font-family: 'Inter', 'Hind Siliguri', sans-serif; }
+        body { background: #ffffff; color: #1e293b; font-family: 'Inter', 'Hind Siliguri', sans-serif; scroll-behavior: smooth; }
         .glass-card { background: #ffffff; border: 1px solid #e2e8f0; box-shadow: 0 4px 12px rgba(0,0,0,0.05); transition: 0.3s; border-radius: 1.2rem; }
         .glass-card:hover { transform: translateY(-3px); border-color: #3b82f6; box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
         .active-tool { border-color: #3b82f6 !important; background: #eff6ff !important; }
         .active-platform { background: #3b82f6 !important; color: white !important; }
-        .platform-btn { border: 1px solid #e2e8f0; transition: 0.2s; }
+        .platform-btn { border: 1px solid #e2e8f0; transition: 0.2s; background: white; }
         textarea { border: 1px solid #e2e8f0; background: #f8fafc; resize: none; border-radius: 1rem; }
-        textarea:focus { border-color: #3b82f6; outline: none; background: #ffffff; }
+        textarea:focus { border-color: #3b82f6; outline: none; background: #ffffff; box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1); }
         .loader { border: 3px solid #f3f3f3; border-top: 3px solid #3b82f6; border-radius: 50%; width: 24px; height: 24px; animation: spin 1s linear infinite; display: inline-block; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .copy-btn { position: absolute; top: 12px; right: 12px; background: #3b82f6; color: white; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: bold; cursor: pointer; border: none; z-index: 10; transition: 0.2s; }
+        .copy-btn:hover { background: #2563eb; transform: scale(1.05); }
     </style>
 </head>
 <body class="p-4 md:p-10">
 
-    <div class="max-w-6xl mx-auto flex justify-end mb-6">
-        <button onclick="toggleLang()" id="langBtn" class="bg-slate-100 px-5 py-2 rounded-full font-bold text-sm hover:bg-slate-200">English-এ দেখুন</button>
-    </div>
+    <nav class="max-w-6xl mx-auto flex flex-wrap justify-between items-center mb-10 gap-4 border-b pb-4 border-slate-100">
+        <div class="flex items-center gap-2">
+            <img src="logo.png" alt="Logo" class="w-10 h-10 object-contain">
+            <span class="font-extrabold text-xl italic tracking-tighter text-slate-900">ViralPulse AI</span>
+        </div>
+        <div class="flex items-center gap-4 md:gap-8 font-bold text-sm text-slate-600">
+            <a href="index.html" id="navHome" class="hover:text-blue-600 transition-colors">হোম</a>
+            <a href="about.html" id="navAbout" class="hover:text-blue-600 transition-colors">আমাদের সম্পর্কে</a>
+            <a href="contact.html" id="navContact" class="hover:text-blue-600 transition-colors">যোগাযোগ</a>
+            <button onclick="toggleLang()" id="langBtn" class="bg-blue-50 text-blue-600 px-4 py-2 rounded-full hover:bg-blue-100 transition-all font-bold">English-এ দেখুন</button>
+        </div>
+    </nav>
 
     <header class="text-center mb-12">
-        <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-slate-900 uppercase italic">ViralPulse AI</h1>
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-slate-900 uppercase italic tracking-tighter">ViralPulse AI</h1>
         <p id="mainSub" class="text-blue-600 font-bold text-lg md:text-xl italic"></p>
     </header>
 
@@ -36,11 +50,11 @@
         <div class="text-center mb-10">
             <p id="platformLabel" class="text-xs font-bold text-slate-400 mb-4 uppercase tracking-widest"></p>
             <div class="flex flex-wrap justify-center gap-3">
-                <button onclick="setPlatform('YouTube', this)" class="platform-btn px-5 py-2 rounded-xl font-bold flex items-center gap-2"><i class="fab fa-youtube text-red-600"></i> YouTube</button>
-                <button onclick="setPlatform('Facebook', this)" class="platform-btn active-platform px-5 py-2 rounded-xl font-bold flex items-center gap-2"><i class="fab fa-facebook text-blue-600"></i> Facebook</button>
-                <button onclick="setPlatform('TikTok', this)" class="platform-btn px-5 py-2 rounded-xl font-bold flex items-center gap-2"><i class="fab fa-tiktok text-black"></i> TikTok</button>
-                <button onclick="setPlatform('Instagram', this)" class="platform-btn px-5 py-2 rounded-xl font-bold flex items-center gap-2"><i class="fab fa-instagram text-pink-500"></i> Instagram</button>
-                <button onclick="setPlatform('Telegram', this)" class="platform-btn px-5 py-2 rounded-xl font-bold flex items-center gap-2"><i class="fab fa-telegram text-sky-500"></i> Telegram</button>
+                <button onclick="setPlatform('YouTube', this)" class="platform-btn px-5 py-2 rounded-xl font-bold flex items-center gap-2 hover:bg-slate-50"><i class="fab fa-youtube text-red-600"></i> YouTube</button>
+                <button onclick="setPlatform('Facebook', this)" class="platform-btn active-platform px-5 py-2 rounded-xl font-bold flex items-center gap-2 hover:bg-slate-50"><i class="fab fa-facebook text-blue-600"></i> Facebook</button>
+                <button onclick="setPlatform('TikTok', this)" class="platform-btn px-5 py-2 rounded-xl font-bold flex items-center gap-2 hover:bg-slate-50"><i class="fab fa-tiktok text-black"></i> TikTok</button>
+                <button onclick="setPlatform('Instagram', this)" class="platform-btn px-5 py-2 rounded-xl font-bold flex items-center gap-2 hover:bg-slate-50"><i class="fab fa-instagram text-pink-500"></i> Instagram</button>
+                <button onclick="setPlatform('Telegram', this)" class="platform-btn px-5 py-2 rounded-xl font-bold flex items-center gap-2 hover:bg-slate-50"><i class="fab fa-telegram text-sky-500"></i> Telegram</button>
             </div>
         </div>
 
@@ -48,20 +62,22 @@
 
         <div class="glass-card p-6 md:p-8 max-w-4xl mx-auto mb-10">
             <div id="guidanceText" class="text-slate-500 font-medium mb-3 text-sm italic"></div>
-            <textarea id="userInput" class="w-full p-5 h-40 text-lg"></textarea>
+            <textarea id="userInput" class="w-full p-5 h-40 text-lg" placeholder="আপনার ভিডিওর বিষয়বস্তু এখানে লিখুন..."></textarea>
             <button onclick="askAI()" id="genBtn" class="w-full mt-5 bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 transition-all shadow-lg">
                 <span id="btnText"></span> <i class="fas fa-magic"></i>
             </button>
         </div>
 
-        <div id="resultBox" class="hidden glass-card p-6 border-l-4 border-blue-600 max-w-4xl mx-auto mb-20">
-            <div id="response" class="text-slate-800 text-lg leading-relaxed whitespace-pre-wrap"></div>
+        <div id="resultBox" class="hidden glass-card p-6 md:p-8 border-l-4 border-blue-600 max-w-4xl mx-auto mb-20 relative">
+            <button onclick="copyResult()" id="copyBtn" class="copy-btn"><i class="fas fa-copy"></i> Copy</button>
+            <div id="response" class="text-slate-800 text-lg leading-relaxed whitespace-pre-wrap font-medium"></div>
         </div>
 
         <footer class="text-center py-10 border-t border-slate-100">
             <div class="text-sm font-bold text-slate-400 uppercase tracking-widest">
                 Creative Vision: Ars | Technical Support: Nuko
             </div>
+            <p class="text-[10px] text-slate-300 mt-2">© 2026 ViralPulse AI. All Rights Reserved.</p>
         </footer>
     </main>
 
@@ -70,7 +86,6 @@
         let currentTool = 'caption';
         let selectedPlatform = 'Facebook';
 
-        // তোমার সেই জাদুকরী টুকরো করা কি (Keys)
         const _m1 = "gsk_AHFo9JiL7wLyQCiXT8eb";
         const _m2 = "WGdyb3FYI7oKthMte6pId2k8muujfeUj";
         const _s1 = "AIzaSyAksjRMcSCBIH14";
@@ -92,8 +107,8 @@
         };
 
         const translations = {
-            bn: { mainSub: "১০০% ফ্রি এআই টুলস - কোনো টাকা বা লগইন লাগবে না", langBtn: "English-এ দেখুন", platformLabel: "প্ল্যাটফর্ম বেছে নিন", btnText: "সমাধান দেখুন" },
-            en: { mainSub: "100% Free AI Tools - No Money, No Login Required", langBtn: "Switch to বাংলা", platformLabel: "Select Platform", btnText: "Generate Solution" }
+            bn: { mainSub: "১০০% ফ্রি এআই টুলস - কোনো টাকা বা লগইন লাগবে না", langBtn: "English-এ দেখুন", platformLabel: "প্ল্যাটফর্ম বেছে নিন", btnText: "সমাধান দেখুন", navHome: "হোম", navAbout: "আমাদের সম্পর্কে", navContact: "যোগাযোগ", copy: "Copy" },
+            en: { mainSub: "100% Free AI Tools - No Money, No Login Required", langBtn: "Switch to বাংলা", platformLabel: "Select Platform", btnText: "Generate Solution", navHome: "Home", navAbout: "About Us", navContact: "Contact Us", copy: "Copy" }
         };
 
         function toggleLang() { currentLang = currentLang === 'en' ? 'bn' : 'en'; renderUI(); }
@@ -105,6 +120,11 @@
             document.getElementById('langBtn').innerText = t.langBtn;
             document.getElementById('platformLabel').innerText = t.platformLabel;
             document.getElementById('btnText').innerText = t.btnText;
+            document.getElementById('navHome').innerText = t.navHome;
+            document.getElementById('navAbout').innerText = t.navAbout;
+            document.getElementById('navContact').innerText = t.navContact;
+            document.getElementById('copyBtn').innerHTML = `<i class="fas fa-copy"></i> ${t.copy}`;
+            
             const grid = document.getElementById('toolGrid');
             grid.innerHTML = '';
             Object.keys(toolConfig).forEach(key => {
@@ -128,15 +148,21 @@
             resBox.classList.remove('hidden');
             responseDiv.innerText = currentLang === 'bn' ? "Ars তৈরি করতেছে..." : "Processing...";
 
-            // হিউম্যান টোন নিশ্চিত করতে প্রম্পট
-            const _p = `Give a helpful and conversational response. Platform: ${selectedPlatform}. Task: ${toolConfig[currentTool].en}. Input: ${input}. 
-            Reply in ${currentLang === 'bn' ? 'Bengali' : 'English'}. Don't sound like an AI, sound like a human expert.`;
+            const systemPrompt = `You are a professional Content Creator Expert. 
+            Instructions:
+            1. Provide extremely detailed, point-by-point, and comprehensive responses. 
+            2. If anyone asks about your identity or creator, strictly state: "আমাকে Ars & Nuko তৈরি করেছেন" (in Bengali) or "I was created by Ars & Nuko" (in English). 
+            3. Do not mention Groq, OpenAI, Google, or Meta. Your only identity is ViralPulse AI.
+            4. Tone: Helpful, expert, and conversational.
+            Current Task: ${toolConfig[currentTool].en} for ${selectedPlatform}.
+            User Input: ${input}. 
+            Language: Respond in ${currentLang === 'bn' ? 'Bengali' : 'English'}.`;
 
             try {
                 const r = await fetch('https://api.groq.com/openai/v1/chat/completions', {
                     method: 'POST',
                     headers: { 'Authorization': `Bearer ${_m1 + _m2}`, 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ model: "llama-3.3-70b-versatile", messages: [{ role: "user", content: _p }] })
+                    body: JSON.stringify({ model: "llama-3.3-70b-versatile", messages: [{ role: "user", content: systemPrompt }] })
                 });
                 const d = await r.json();
                 responseDiv.innerText = d.choices[0].message.content;
@@ -145,16 +171,27 @@
                     const rG = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${_s1 + _s2}`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ contents: [{ parts: [{ text: _p }] }] })
+                        body: JSON.stringify({ contents: [{ parts: [{ text: systemPrompt }] }] })
                     });
                     const dG = await rG.json();
                     responseDiv.innerText = dG.candidates[0].content.parts[0].text;
-                } catch (err) { responseDiv.innerText = "Error!"; }
+                } catch (err) { responseDiv.innerText = "Error! Please try again."; }
             } finally {
                 btn.disabled = false; btn.innerHTML = `<span>${translations[currentLang].btnText}</span> <i class="fas fa-magic"></i>`;
                 resBox.scrollIntoView({ behavior: 'smooth' });
             }
         }
+
+        function copyResult() {
+            const text = document.getElementById('response').innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                const copyBtn = document.getElementById('copyBtn');
+                const originalContent = copyBtn.innerHTML;
+                copyBtn.innerText = currentLang === 'bn' ? "কপি হয়েছে!" : "Copied!";
+                setTimeout(() => { copyBtn.innerHTML = originalContent; }, 2000);
+            });
+        }
+
         renderUI();
     </script>
 </body>
